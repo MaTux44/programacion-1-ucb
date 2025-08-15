@@ -179,13 +179,11 @@
       <nav class="nav" aria-label="Principal">
         <a class="brand" href="#">
           <span class="brand-badge" aria-hidden="true"></span>
-          <span>Algoritmos · Demo</span>
+          <span>Pruebas </span>
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
         <div id="nav-links" class="nav-links" role="navigation">
           <a href="#algoritmos">Algoritmos</a>
-          <a href="#acerca">Acerca</a>
-          <a href="#contacto">Contacto</a>
         </div>
       </nav>
     </div>
@@ -203,18 +201,11 @@
         <p>Integra y prueba tus funciones desde el archivo “aprendiendo.js”. Este entorno es responsivo, accesible y fácil de extender.</p>
         <div style="display:flex; gap:12px; margin-top:8px;">
           <a class="btn btn-primario" href="#algoritmos">Ir a los algoritmos</a>
-          <a class="btn btn-secundario" href="#acerca">Ver detalles</a>
+          <a class="btn btn-secundario" href="#Acerca">Ver detalles</a>
         </div>
       </div>
-
-      <div class="card" aria-label="Resumen">
-        <div class="card-body">
-          <h2 style="margin-top:0;">Resumen del proyecto</h2>
-          <ul class="muted" style="margin:0; padding-left:18px;">
-            <li>Colores corporativos: primario #FFCF15 y secundario #00477A.</li>
-            <li>Cabecera y pie con estilo profesional.</li>
-            <li>Botón que ejecuta la función “mi primer algoritmo”.</li>
-            <li>Estructura preparada para agregar más algoritmos.</li>
+      
+            
           </ul>
         </div>
       </div>
@@ -229,11 +220,9 @@
           <div class="card">
             <div class="card-body">
               <h2 style="margin-top:0;">Ejecutar “mi primer algoritmo”</h2>
-              <p class="muted">Al hacer clic, se intentará invocar tu función desde aprendiendo.js. Se admiten estas variantes de nombre:</p>
+              <p class="muted">Al hacer clic, se intentará invocar tu función desde aprendiendo.js </p>
               <ul class="muted" style="margin-top:6px; padding-left:18px;">
-                <li>window["mi primer algoritmo"]</li>
-                <li>mi_primer_algoritmo</li>
-                <li>miPrimerAlgoritmo</li>
+             
               </ul>
 
               <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap;">
@@ -249,32 +238,11 @@
           </div>
         </div>
 
-        <aside class="col-4">
-          <div class="card">
-            <div class="card-body">
-              <h2 style="margin-top:0;">Cómo integrar tus funciones</h2>
-              <ol class="muted" style="margin:0; padding-left:18px;">
-                <li>Crea el archivo <strong>aprendiendo.js</strong> en el mismo directorio.</li>
-                <li>Define tu función. Ejemplos:
-                  <pre class="salida" style="min-height:auto; background:#0b2333; color:#cfe6f6; border-color:#15374e; margin-top:8px;">
-// Opción A: nombre con espacios
-window["mi primer algoritmo"] = function () {
-  return "¡Hola desde 'mi primer algoritmo'!";
-};
+       
 
-// Opción B: snake_case
-function mi_primer_algoritmo() {
-  return { ok: true, mensaje: "Ejecutado con éxito" };
-}
-
-// Opción C: camelCase (recomendada)
-function miPrimerAlgoritmo() {
-  // Puede devolver un valor, objeto o promesa
-  return ["a","b","c"].map(x => x.toUpperCase());
-}
                   </pre>
                 </li>
-                <li>Recarga esta página y pulsa “Ejecutar ahora”.</li>
+      
               </ol>
             </div>
           </div>
@@ -283,10 +251,7 @@ function miPrimerAlgoritmo() {
     </section>
 
     <section id="acerca" class="section">
-      <div class="card">
-        <div class="card-body">
-          <h2 style="margin-top:0;">Acerca del diseño</h2>
-          <p class="muted">El diseño prioriza claridad y contraste: azul secundario para fondos estructurales y amarillo primario para acciones. Es totalmente responsivo y fácil de extender con nuevas secciones o componentes.</p>
+      
         </div>
       </div>
     </section>
@@ -294,11 +259,7 @@ function miPrimerAlgoritmo() {
 
   <!-- PIE DE PÁGINA -->
   <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <div class="chips" aria-label="Estado del sistema">
-        <span class="chip"><span class="dot"></span>Interfaz lista</span>
-        <span class="chip"><span class="dot"></span>Colores corporativos</span>
-        <span class="chip"><span class="dot"></span>Responsivo</span>
+   
       </div>
       <div class="muted">© <span id="year"></span> · Listo para tus algoritmos</div>
     </div>

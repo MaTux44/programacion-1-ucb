@@ -4,20 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Algoritmos</title>
+    <title>Mi Proyecto</title>
     <style>
         :root {
             --primario: #FFCF15;
             --secundario: #00477A;
         }
 
-        body {
+        * {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
         }
 
         header {
@@ -27,11 +32,16 @@
             text-align: center;
         }
 
+        header h1 {
+            font-size: 1.8rem;
+        }
+
         main {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 2rem;
         }
 
         button {
@@ -39,53 +49,25 @@
             color: var(--secundario);
             border: none;
             padding: 1rem 2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: 0.3s ease;
         }
 
         button:hover {
-            background-color: #e6b800;
-            transform: scale(1.05);
+            background-color: var(--secundario);
+            color: var(--primario);
         }
 
         footer {
             background-color: var(--secundario);
             color: white;
             text-align: center;
-            padding: 0.5rem;
+            padding: 1rem;
             font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
-            button {
-                width: 80%;
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Mis Algoritmos</h1>
-    </header>
-
-    <main>
-        <button onclick="mi_primer_algoritmo()">Ejecutar mi primer algoritmo</button>
-        <input id="decimal" type="number" placeholder="Ingresa un número decimal">
-<button type="button" onclick="decimalABinario(+document.getElementById('decimal').value)">
-  Convertir a binario
-  
-</button>
-
-    </main>
-
-    <footer>
-        &copy; 2025 - Proyecto de Algoritmos
-    </footer>
-
-    <script src="aprendiendo.js"></script>
-</body>
-</html>
+        /* Responsivo */
+        @media (max-widt
