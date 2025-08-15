@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Algoritmo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header class="header">
+        <div class="container">
+            <h1>Mi Proyecto de Algoritmos</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Funciones</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content container">
+        <h2>Bienvenido</h2>
+        <p>Pulsa el botón para ejecutar <strong>miPrimerAlgoritmo()</strong> desde el archivo <em>aprendiendo.js</em>.</p>
+        <button id="btn-algoritmo">Ejecutar Algoritmo</button>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 - Mi Proyecto | Diseñado con colores corporativos</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT EXTERNO -->
+    <script src="aprendiendo.js"></script>
+    <script>
+        document.getElementById('btn-algoritmo').addEventListener('click', miPrimerAlgoritmo);
+    </script>
+</body>
+</html>

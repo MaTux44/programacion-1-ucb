@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Profesional</title>
+    <style>
+        :root {
+            --primary-color: #FFCF15;
+            --secondary-color: #00477A;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+            --light-text-color: #fff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header, footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #e6b800; /* Un tono más oscuro del color primario */
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Media Queries para responsividad */
+        @media (max-width: 768px) {
+            header, footer {
+                padding: 1rem;
+            }
+            main {
+                padding: 1rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mi Página Profesional</h1>
+    </header>
+
+    <main>
+        <div class="content">
+            <h2>Bienvenido</h2>
+            <p>Este es el contenido principal de la página, diseñado con un estilo limpio y profesional. Aquí puedes mostrar información relevante, proyectos o cualquier otro contenido.</p>
+            <button class="btn" onclick="miPrimerAlgoritmo()">Ejecutar Algoritmo</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mi Compañía. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="APRENDIENDO.JS"></script>
+
+    <script>
+        function miPrimerAlgoritmo() {
+            alert('¡Hola desde mi primer algoritmo!');
+        }
+    </script>
+
+</body>
+</html>

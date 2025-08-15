@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo de Algoritmos | Interfaz Responsiva</title>
+  <meta name="description" content="Interfaz responsiva con integración de funciones desde aprendiendo.js" />
+  <style>
+    :root{
+      --color-primario:#FFCF15;
+      --color-secundario:#00477A;
+      --texto:#0b1f2a;
+      --fondo:#f7fafc;
+      --blanco:#ffffff;
+      --borde:#e5e7eb;
+      --sombra: 0 10px 25px rgba(0,0,0,.08);
+      --radio:14px;
+      --trans: 180ms cubic-bezier(.2,.7,.2,1);
+    }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--texto);
+      background:var(--fondo);
+      line-height:1.6;
+    }
+
+    /* Cabecera */
+    header.site-header{
+      position: sticky;
+      top:0;
+      z-index:1000;
+      background: linear-gradient(90deg, var(--color-secundario) 0%, #003a62 100%);
+      color:var(--blanco);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:64px;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.2px;
+      text-decoration:none;
+      color:var(--blanco);
+      font-size:1.125rem;
+    }
+    .brand-badge{
+      width:28px;height:28px;border-radius:8px;
+      background: var(--color-primario);
+      box-shadow:0 6px 16px rgba(255,207,21,.35);
+    }
+    .nav-links{
+      display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+    }
+    .nav-links a{
+      color:#e6f0f7; text-decoration:none; font-weight:500;
+      padding:8px 10px; border-radius:8px; transition: color var(--trans), background var(--trans);
+    }
+    .nav-links a:hover{ color:var(--color-primario); background:rgba(255,255,255,.06); }
+    .nav-toggle{
+      display:none; background:transparent; border:1px solid rgba(255,255,255,.25);
+      color:#e6f0f7; padding:8px 10px; border-radius:10px; cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      background: radial-gradient(1000px 400px at 20% -10%, rgba(255,207,21,.18), transparent 60%),
+                  radial-gradient(800px 300px at 90% 0%, rgba(255,255,255,.06), transparent 60%),
+                  var(--blanco);
+      border-bottom:1px solid var(--borde);
+    }
+    .hero-inner{
+      padding:48px 0;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center;
+    }
+    .kpi{
+      display:flex; gap:16px; align-items:center; color:#194866; font-weight:600;
+      background:#f0f7fb; border:1px solid #dbe7f0; padding:10px 12px; width:max-content; border-radius:999px;
+    }
+    .hero h1{
+      margin:12px 0 10px; font-size:clamp(28px, 4vw, 42px); line-height:1.15; color:#0f2433;
+    }
+    .hero p{ margin:0 0 18px; color:#1c3140; opacity:.9; }
+
+    .card{
+      background:var(--blanco); border:1px solid var(--borde); border-radius:var(--radio);
+      box-shadow: var(--sombra);
+    }
+    .card-body{ padding:22px; }
+    .card h2{ margin:0 0 10px; font-size:1.15rem; }
+    .muted{ color:#4b5b69; }
+
+    /* Botones */
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      border:none; cursor:pointer; padding:12px 18px; border-radius:12px;
+      font-weight:700; letter-spacing:.2px; transition: transform var(--trans), box-shadow var(--trans), background var(--trans), color var(--trans);
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primario{
+      background: var(--color-primario);
+      color: var(--color-secundario);
+      box-shadow: 0 8px 20px rgba(255,207,21,.35);
+    }
+    .btn-primario:hover{
+      background:#F0C313; /* tono más oscuro del primario */
+      box-shadow: 0 10px 24px rgba(255,207,21,.45);
+    }
+    .btn-secundario{
+      background: var(--color-secundario);
+      color: #fff;
+    }
+    .btn-secundario:hover{
+      background:#003a62;
+    }
+
+    /* Sección de algoritmos */
+    .grid{
+      display:grid; grid-template-columns: repeat(12, 1fr); gap:18px;
+    }
+    .col-8{ grid-column: span 8; }
+    .col-4{ grid-column: span 4; }
+    .section{ padding:28px 0 40px; }
+
+    .salida{
+      background:#0b2333; color:#e7f2fb; min-height:120px; border-radius:12px; border:1px solid #15374e;
+      padding:14px 16px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      overflow:auto; white-space:pre-wrap;
+    }
+
+    /* Pie de página */
+    footer.site-footer{
+      border-top:1px solid var(--borde);
+      background: linear-gradient(180deg, #ffffff 0%, #f4f7fa 100%);
+      color:#274a62;
+    }
+    .footer-inner{
+      padding:22px 0;
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .chips{ display:flex; gap:10px; flex-wrap:wrap; }
+    .chip{
+      background:#0e3a58; color:#cfe6f6; border:1px solid #275b7d; padding:8px 12px; border-radius:999px; font-size:.9rem;
+    }
+    .chip .dot{ width:8px; height:8px; background:var(--color-primario); border-radius:50%; display:inline-block; margin-right:8px; box-shadow:0 0 0 3px rgba(255,207,21,.2); }
+
+    /* Responsividad */
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns:1fr; }
+      .col-8, .col-4{ grid-column: span 12; }
+    }
+    @media (max-width: 720px){
+      .nav-links{ display:none; width:100%; }
+      .nav-links.open{ display:flex; }
+      .nav{ align-items:flex-start; padding:10px 0; }
+      .nav-toggle{ display:inline-flex; }
+    }
+  </style>
+</head>
+<body>
+  <!-- CABECERA -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Principal">
+        <a class="brand" href="#">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>Algoritmos · Demo</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
+        <div id="nav-links" class="nav-links" role="navigation">
+          <a href="#algoritmos">Algoritmos</a>
+          <a href="#acerca">Acerca</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="kpi" aria-label="Indicador de estado">
+          <span style="width:10px;height:10px;border-radius:50%;background:var(--color-primario);box-shadow:0 0 0 4px rgba(255,207,21,.25)"></span>
+          Listo para ejecutar tus algoritmos
+        </div>
+        <h1>Interfaz profesional con colores corporativos</h1>
+        <p>Integra y prueba tus funciones desde el archivo “aprendiendo.js”. Este entorno es responsivo, accesible y fácil de extender.</p>
+        <div style="display:flex; gap:12px; margin-top:8px;">
+          <a class="btn btn-primario" href="#algoritmos">Ir a los algoritmos</a>
+          <a class="btn btn-secundario" href="#acerca">Ver detalles</a>
+        </div>
+      </div>
+
+      <div class="card" aria-label="Resumen">
+        <div class="card-body">
+          <h2 style="margin-top:0;">Resumen del proyecto</h2>
+          <ul class="muted" style="margin:0; padding-left:18px;">
+            <li>Colores corporativos: primario #FFCF15 y secundario #00477A.</li>
+            <li>Cabecera y pie con estilo profesional.</li>
+            <li>Botón que ejecuta la función “mi primer algoritmo”.</li>
+            <li>Estructura preparada para agregar más algoritmos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+    <section id="algoritmos" class="section">
+      <div class="grid">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-body">
+              <h2 style="margin-top:0;">Ejecutar “mi primer algoritmo”</h2>
+              <p class="muted">Al hacer clic, se intentará invocar tu función desde aprendiendo.js. Se admiten estas variantes de nombre:</p>
+              <ul class="muted" style="margin-top:6px; padding-left:18px;">
+                <li>window["mi primer algoritmo"]</li>
+                <li>mi_primer_algoritmo</li>
+                <li>miPrimerAlgoritmo</li>
+              </ul>
+
+              <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap;">
+                <button id="btnMiPrimerAlgoritmo" class="btn btn-primario" type="button">Ejecutar ahora</button>
+                <span id="estadoAlgoritmo" class="muted" aria-live="polite"></span>
+              </div>
+
+              <div style="margin-top:16px;">
+                <label for="salidaAlgoritmo" class="muted" style="display:block; margin-bottom:6px;">Salida:</label>
+                <pre id="salidaAlgoritmo" class="salida" aria-live="polite">Esperando ejecución…</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 style="margin-top:0;">Cómo integrar tus funciones</h2>
+              <ol class="muted" style="margin:0; padding-left:18px;">
+                <li>Crea el archivo <strong>aprendiendo.js</strong> en el mismo directorio.</li>
+                <li>Define tu función. Ejemplos:
+                  <pre class="salida" style="min-height:auto; background:#0b2333; color:#cfe6f6; border-color:#15374e; margin-top:8px;">
+// Opción A: nombre con espacios
+window["mi primer algoritmo"] = function () {
+  return "¡Hola desde 'mi primer algoritmo'!";
+};
+
+// Opción B: snake_case
+function mi_primer_algoritmo() {
+  return { ok: true, mensaje: "Ejecutado con éxito" };
+}
+
+// Opción C: camelCase (recomendada)
+function miPrimerAlgoritmo() {
+  // Puede devolver un valor, objeto o promesa
+  return ["a","b","c"].map(x => x.toUpperCase());
+}
+                  </pre>
+                </li>
+                <li>Recarga esta página y pulsa “Ejecutar ahora”.</li>
+              </ol>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="acerca" class="section">
+      <div class="card">
+        <div class="card-body">
+          <h2 style="margin-top:0;">Acerca del diseño</h2>
+          <p class="muted">El diseño prioriza claridad y contraste: azul secundario para fondos estructurales y amarillo primario para acciones. Es totalmente responsivo y fácil de extender con nuevas secciones o componentes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="chips" aria-label="Estado del sistema">
+        <span class="chip"><span class="dot"></span>Interfaz lista</span>
+        <span class="chip"><span class="dot"></span>Colores corporativos</span>
+        <span class="chip"><span class="dot"></span>Responsivo</span>
+      </div>
+      <div class="muted">© <span id="year"></span> · Listo para tus algoritmos</div>
+    </div>
+  </footer>
+
+  <!-- IMPORTA TUS FUNCIONES AQUÍ -->
+  <!-- Nota: agrega el archivo 'aprendiendo.js' junto a este HTML. -->
+  <script src="aprendiendo.js" defer></script>
+
+  <!-- LÓGICA DE LA PÁGINA -->
+  <script>
+    // Utilidad: formatea cualquier salida de forma legible
+    function formatearSalida(valor){
+      try{
+        if (typeof valor === "string") return valor;
+        if (valor === undefined) return "undefined";
+        if (valor === null) return "null";
+        return JSON.stringify(valor, null, 2);
+      }catch(e){
+        return String(valor);
+      }
+    }
+
+    function buscarFuncionAlgoritmo(){
+      // Soporta distintos estilos de nombre
+      const candidatos = [
+        { nombre:'mi primer algoritmo', fn: window["mi primer algoritmo"] },
+        { nombre:'mi_primer_algoritmo', fn: window.mi_primer_algoritmo },
+        { nombre:'miPrimerAlgoritmo', fn: window.miPrimerAlgoritmo },
+      ];
+      const encontrado = candidatos.find(c => typeof c.fn === 'function');
+      return encontrado || null;
+    }
+
+    async function ejecutarAlgoritmo(){
+      const estado = document.getElementById('estadoAlgoritmo');
+      const salida = document.getElementById('salidaAlgoritmo');
+
+      estado.textContent = "Buscando función…";
+      const hallado = buscarFuncionAlgoritmo();
+
+      if(!hallado){
+        estado.textContent = "No se encontró la función.";
+        salida.textContent = "Define alguna de estas variantes en aprendiendo.js:\n" +
+          "- window[\"mi primer algoritmo\"] = function(){...}\n" +
+          "- function mi_primer_algoritmo(){...}\n" +
+          "- function miPrimerAlgoritmo(){...}";
+        return;
+      }
+
+      estado.textContent = `Ejecutando: ${hallado.nombre}()`;
+      try{
+        // Soporta retornos síncronos y promesas
+        const resultado = await Promise.resolve(hallado.fn());
+        salida.textContent = formatearSalida(resultado);
+        estado.textContent = "Ejecución correcta.";
+      }catch(error){
+        salida.textContent = "Error al ejecutar:\n" + (error && error.stack ? error.stack : String(error));
+        estado.textContent = "Ocurrió un error.";
+      }
+    }
+
+    // Navegación responsiva: toggle del menú
+    function configurarNavegacion(){
+      const btn = document.querySelector('.nav-toggle');
+      const links = document.getElementById('nav-links');
+      if(!btn || !links) return;
+      btn.addEventListener('click', () => {
+        const abierto = links.classList.toggle('open');
+        btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      configurarNavegacion();
+
+      const btn = document.getElementById('btnMiPrimerAlgoritmo');
+      btn.addEventListener('click', ejecutarAlgoritmo);
+    });
+  </script>
+</body>
+</html>
